@@ -1,1 +1,5 @@
-<h1>MAIN</h1>
+<div class="main">
+  <ul class="todo-list">
+    <li *ngFor="let todo of visibleTodos()">{{ todo.text }}</li>
+  </ul>
+</div>

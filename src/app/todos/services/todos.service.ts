@@ -1,3 +1,4 @@
+import { Filter } from '../types/filter.enum';
 import { Todo } from './../types/todo.interface';
 import { Injectable, signal } from '@angular/core';
 
@@ -6,6 +7,7 @@ import { Injectable, signal } from '@angular/core';
 })
 export class TodosService {
   todosSignal = signal<Todo[]>([]);
+  filterSignal = signal<Filter>(Filter.all);
 
   addTodo(text: string) {
     const newTodo: Todo = {
@@ -14,7 +16,7 @@ export class TodosService {
       isCompleted: false,
     };
 
-    console.log('todosSignal', this.todosSignal);
+    console.log('todosSignal', this.todosSignal());
 
     this.todosSignal.update((todos) => [...todos, newTodo]);
   }
