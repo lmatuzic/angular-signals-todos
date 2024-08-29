@@ -15,6 +15,7 @@
     <input
       type="text"
       class="edit"
+      #textInput
       [value]="editingText"
       (keyup)="changeText($event)"
       (keyup.enter)="changeTodo()"
