@@ -19,7 +19,7 @@ export class MainComponent {
     const todos = this.todosService.todosSignal();
     const filter = this.todosService.filterSignal();
 
-    if (filter === Filter.all) {
+    if (filter === Filter.active) {
       return todos.filter((todo) => !todo.isCompleted);
     }
 
@@ -30,7 +30,16 @@ export class MainComponent {
     return todos;
   });
 
+  isAllTodosSelected = computed(() => {
+    return this.todosService.todosSignal().every((todo) => todo.isCompleted);
+  });
+
   setEditingId(id: string | null) {
     this.editingId = id;
+  }
+
+  toggleAllTodos(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.todosService.toggleAll(target.checked);
   }
 }

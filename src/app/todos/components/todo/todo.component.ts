@@ -8,6 +8,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
+  computed,
   inject,
 } from '@angular/core';
 import { Todo } from '../../types/todo.interface';
@@ -27,8 +28,10 @@ export class TodoComponent implements OnInit, OnChanges {
   @ViewChild('textInput') textInput?: ElementRef;
 
   todosService = inject(TodosService);
-
   editingText = '';
+  isAllTodosSelected = computed(() => {
+    this.todosService.todosSignal().every((todo) => todo.isCompleted);
+  });
 
   ngOnInit(): void {
     this.editingText = this.todo.text;
@@ -62,5 +65,10 @@ export class TodoComponent implements OnInit, OnChanges {
 
   toggleTodo() {
     this.todosService.toggleTodo(this.todo.id);
+  }
+
+  toggleAllTodos(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.todosService.toggleAll(target.checked);
   }
 }

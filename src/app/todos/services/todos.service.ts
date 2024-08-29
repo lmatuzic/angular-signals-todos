@@ -50,4 +50,10 @@ export class TodosService {
       })
     );
   }
+
+  toggleAll(isCompleted: boolean) {
+    this.todosSignal.update((todos) =>
+      todos.map((todo) => ({ ...todo, isCompleted }))
+    );
+  }
 }

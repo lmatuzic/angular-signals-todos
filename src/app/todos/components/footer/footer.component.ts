@@ -21,7 +21,7 @@ export class FooterComponent {
   });
 
   noTodosClass = computed(() => {
-    this.todosService.todosSignal().length === 0 ? 'hidden' : '';
+    return this.todosService.todosSignal().length === 0 ? 'hidden' : '';
   });
 
   itemsLeftText = computed(() => {
