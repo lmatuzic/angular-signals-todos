@@ -14,6 +14,8 @@ export class TodosService {
       isCompleted: false,
     };
 
+    console.log('todosSignal', this.todosSignal);
+
     this.todosSignal.update((todos) => [...todos, newTodo]);
   }
 }
