@@ -38,4 +38,16 @@ export class TodosService {
   removeTodo(id: string) {
     this.todosSignal.update((todos) => todos.filter((todo) => todo.id !== id));
   }
+
+  toggleTodo(id: string) {
+    this.todosSignal.update((todos) =>
+      todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, isCompleted: !todo.isCompleted };
+        }
+
+        return todo;
+      })
+    );
+  }
 }
