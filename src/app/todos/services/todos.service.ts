@@ -9,14 +9,16 @@ export class TodosService {
   todosSignal = signal<Todo[]>([]);
   filterSignal = signal<Filter>(Filter.all);
 
+  changeFilter(filterName: Filter) {
+    this.filterSignal.set(filterName);
+  }
+
   addTodo(text: string) {
     const newTodo: Todo = {
       id: Math.random().toString(16),
       text,
       isCompleted: false,
     };
-
-    console.log('todosSignal', this.todosSignal());
 
     this.todosSignal.update((todos) => [...todos, newTodo]);
   }
