@@ -1,5 +1,8 @@
 <div class="main">
   <ul class="todo-list">
-    <li *ngFor="let todo of visibleTodos()">{{ todo.text }}</li>
+    <app-todos-todo
+      *ngFor="let todo of visibleTodos()"
+      [todo]="todo"
+    ></app-todos-todo>
   </ul>
 </div>
