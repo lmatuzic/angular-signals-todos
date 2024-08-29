@@ -22,4 +22,16 @@ export class TodosService {
 
     this.todosSignal.update((todos) => [...todos, newTodo]);
   }
+
+  changeTodo(id: string, text: string) {
+    this.todosSignal.update((todos) =>
+      todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, text };
+        }
+
+        return todo;
+      })
+    );
+  }
 }

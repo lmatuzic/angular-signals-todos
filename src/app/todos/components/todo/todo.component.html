@@ -1,5 +1,15 @@
-<li>
+<li [ngClass]="{ editing: isEditing }">
   <div class="view">
-    <div>{{ todo.text }}</div>
+    <div (dblclick)="setTodoInEditMode()">{{ todo.text }}</div>
   </div>
+
+  <ng-container *ngIf="isEditing">
+    <input
+      type="text"
+      class="edit"
+      [value]="editingText"
+      (keyup)="changeText($event)"
+      (keyup.enter)="changeTodo()"
+    />
+  </ng-container>
 </li>
