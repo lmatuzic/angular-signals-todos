@@ -34,4 +34,8 @@ export class TodosService {
       })
     );
   }
+
+  removeTodo(id: string) {
+    this.todosSignal.update((todos) => todos.filter((todo) => todo.id !== id));
+  }
 }
